@@ -4,7 +4,9 @@ namespace Laravel\Telescope\Storage;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EntryModel extends Model
+use Jenssegers\Mongodb\Eloquent\Model as Moloquent;
+
+class EntryModel extends Moloquent
 {
     /**
      * The table associated with the model.
@@ -61,11 +63,11 @@ class EntryModel extends Model
     public function scopeWithTelescopeOptions($query, $type, EntryQueryOptions $options)
     {
         $this->whereType($query, $type)
-                ->whereBatchId($query, $options)
-                ->whereTag($query, $options)
-                ->whereFamilyHash($query, $options)
-                ->whereBeforeSequence($query, $options)
-                ->filter($query, $options);
+            ->whereBatchId($query, $options)
+            ->whereTag($query, $options)
+            ->whereFamilyHash($query, $options)
+            ->whereBeforeSequence($query, $options)
+            ->filter($query, $options);
 
         return $query;
     }
@@ -165,7 +167,7 @@ class EntryModel extends Model
             return $this;
         }
 
-        $query->where('should_display_on_index', true);
+        // $query->where('should_display_on_index', true);
 
         return $this;
     }
