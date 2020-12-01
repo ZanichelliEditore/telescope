@@ -167,8 +167,6 @@ class EntryModel extends Moloquent
             return $this;
         }
 
-        // $query->where('should_display_on_index', true);
-
         return $this;
     }
 
